@@ -10,12 +10,15 @@
     "deploy-graphql": "sanity graphql deploy",
     "dev": "sanity dev",
     "start": "sanity start",
-    "typegen": "sanity schemas extract --force && sanity typegen generate"
+    "typegen": "sanity schemas extract --force && sanity typegen generate",
+    "check": "tsc --noEmit && eslint .",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
+    "@sanity/client": "^8.9.0",
     "@sanity/color": "^3.0.9",
     "@sanity/locale-es-es": "^1.2.39",
     "@sanity/ui": "^4.4.9",
@@ -30,6 +33,7 @@
     "@sanity/eslint-config-studio": "^7",
     "@types/react": "^19.2.14",
     "eslint": "^10.8.1",
+    "groq-js": "^2.0.0",
     "prettier": "^3.5",
     "typescript": "~6.0"
   },

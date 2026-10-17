@@ -74,6 +74,51 @@ export type Seo = {
   noIndex?: boolean
 }
 
+export type Service = {
+  _id: string
+  _type: 'service'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  description?: string
+  icon?:
+    | 'plane'
+    | 'clapperboard'
+    | 'megaphone'
+    | 'music'
+    | 'camera'
+    | 'video'
+    | 'scissors'
+    | 'palette'
+    | 'wand-sparkles'
+    | 'calendar'
+    | 'mic'
+    | 'play'
+  order?: number
+}
+
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
+
+export type CategoryReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'category'
+}
+
+export type ServiceReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'service'
+}
+
 export type Project = {
   _id: string
   _type: 'project'
@@ -82,17 +127,27 @@ export type Project = {
   _rev: string
   title?: string
   slug?: Slug
+  category?: CategoryReference
   client?: string
   year?: number
+  description?: string
+  tagline?: string
+  serviceReferences?: Array<
+    {
+      _key: string
+    } & ServiceReference
+  >
   services?: Array<string>
+  tags?: Array<string>
   coverImage?: {
-    asset?: SanityImageAssetReference
+    asset: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
     alt?: string
     _type: 'image'
   }
+  video?: ProjectVideo
   videoUrl?: string
   gallery?: Array<{
     asset?: SanityImageAssetReference
@@ -104,6 +159,8 @@ export type Project = {
     _key: string
   }>
   featured?: boolean
+  order?: number
+  publishedAt?: string
   credits?: Array<{
     role?: string
     name?: string
@@ -147,10 +204,48 @@ export type SanityImageHotspot = {
   width?: number
 }
 
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
+export type SanityFileAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+}
+
+export type ProjectVideo = {
+  _type: 'projectVideo'
+  sourceType?: 'external' | 'direct' | 'upload'
+  externalUrl?: string
+  videoFile?: {
+    asset?: SanityFileAssetReference
+    media?: unknown
+    _type: 'file'
+  }
+  durationSeconds?: number
+}
+
+export type Category = {
+  _id: string
+  _type: 'category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  icon?:
+    | 'plane'
+    | 'clapperboard'
+    | 'megaphone'
+    | 'music'
+    | 'camera'
+    | 'video'
+    | 'scissors'
+    | 'palette'
+    | 'wand-sparkles'
+    | 'calendar'
+    | 'mic'
+    | 'play'
+  description?: string
+  order?: number
 }
 
 export type MediaFolderReference = {
@@ -280,10 +375,16 @@ export type AllSanitySchemaTypes =
   | SiteSettings
   | SanityImageAssetReference
   | Seo
+  | Service
+  | Slug
+  | CategoryReference
+  | ServiceReference
   | Project
   | SanityImageCrop
   | SanityImageHotspot
-  | Slug
+  | SanityFileAssetReference
+  | ProjectVideo
+  | Category
   | MediaFolderReference
   | MediaFolder
   | MediaTag

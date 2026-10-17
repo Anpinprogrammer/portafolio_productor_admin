@@ -1,0 +1,25 @@
+{
+  "_id": "project-vlog-viaje",
+  "title": "Vlog de viaje",
+  "slug": "vlog-de-viaje",
+  "category": {"title": "Viajes", "slug": "viajes", "icon": "plane"},
+  "coverImage": {
+    "url": "https://cdn.sanity.io/images/vrb9lndu/portafolio_productor/EXAMPLE-1200x1600.webp",
+    "alt": "Viajero observando una cordillera al amanecer"
+  },
+  "video": {
+    "sourceType": "external",
+    "url": "https://vimeo.com/123456789",
+    "durationSeconds": 72
+  },
+  "tagline": "EXPLORA · DESCUBRE · CUENTA TU HISTORIA",
+  "description": "Videos que capturan la esencia de cada lugar, experiencias y momentos únicos, con edición y color cinematográficos.",
+  "services": [
+    {"_id": "service-edicion", "title": "Edición de video", "slug": "edicion-de-video"},
+    {"_id": "service-color", "title": "Color grading", "slug": "color-grading"}
+  ],
+  "tags": ["Viaje", "Cine", "Vlog"],
+  "featured": true,
+  "order": 0,
+  "publishedAt": "2026-10-16T15:00:00Z"
+}
