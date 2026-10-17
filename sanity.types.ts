@@ -83,6 +83,8 @@ export type Service = {
   title?: string
   slug?: Slug
   description?: string
+  demoVideoUrl?: string
+  workflow?: string
   icon?:
     | 'plane'
     | 'clapperboard'
